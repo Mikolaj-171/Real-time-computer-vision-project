@@ -1,0 +1,27 @@
+Quick Start Guide
+=================
+
+First, install dependencies:
+pip install -r requirements.txt
+
+Scenario 1: Run gesture detection immediately (Model is already in place!)
+--------------------------------------------------------------------------
+Since you've added the 'runs' folder with the trained weights:
+1. Open 'real_time_cv.ipynb'.
+2. Make sure MODEL_PATH points to: r'runs\detect\gesture_detector-7\weights\best.pt' (this is set by default).
+3. Run the notebook cell to start the webcam.
+4. Point your hand at the camera to detect gestures. Press 'q' inside the webcam window to exit.
+
+Scenario 2: How to retrain the model from scratch
+-------------------------------------------------
+If you want to download the 30k Hagrid dataset and train it yourself:
+
+1. Download the Hagrid dataset (annotations & images).
+2. Set up the folder structure in this directory:
+   Hagrid/
+   ├── ann_train_val/   <-- JSON annotation files here (e.g. one.json)
+   └── hagrid_30k/      <-- Image folders here (e.g. train_val_one/)
+
+3. Run 'yaml_handle.ipynb': This will split the data and build the dataset.yaml file inside a new 'yolo_dataset' folder.
+4. Run 'training.ipynb': This trains the model on the dataset. It will save the new weights under 'runs/detect/gesture_detector/weights/best.pt'.
+5. Open 'real_time_cv.ipynb', point MODEL_PATH to your new weights, and run it.
